@@ -10,11 +10,12 @@ public class DANI extends PApplet {
 
 	ArrayList<Word> model = new ArrayList<>();
 
+	
 	public void loadFile() 
 	{
 		String[] lines = loadStrings("small.txt");
 		String[] words;
-		String last_word = "";
+		String last_word = null;
 		Word this_word;
 		Follow this_follow;
 
@@ -24,21 +25,25 @@ public class DANI extends PApplet {
 			for (String WORD : words) {
 				WORD = WORD.replaceAll("[^\\w\\s]", "");
 				WORD = WORD.toLowerCase();
-
-				if (last_word != "") //null included invisable characters, "" works
+				println("Previous word is " + last_word + " new is " + WORD);
+				if (last_word != null) //null included invisable characters, "" works
 				{
 					this_word = find_word(last_word);
 					if (this_word == null) 
 					{
+						println("adding word to model");
 						this_word = new Word(last_word);
 						model.add(this_word);
 					}
+					
 
 
 					this_follow = this_word.find_follow(WORD);
 					if (this_follow == null) 
 					{
+						// I cannot understand why 
 						println("adding follow");
+
 						Follow temp_follow = new Follow(WORD, 1);
 						this_word.add_follow(temp_follow);
 					} 
@@ -48,6 +53,7 @@ public class DANI extends PApplet {
 						this_follow.increase_count();
 					}
 				}
+
 				last_word = WORD;
 			}
 		}
@@ -57,7 +63,7 @@ public class DANI extends PApplet {
 	{
 		for (Word this_word : model) 
 		{
-			if (this_word.get_word() == the_string) 
+			if (this_word.get_word().equals(the_string) ) // == caused issue, fixed
 			{
 				return this_word;
 			}
