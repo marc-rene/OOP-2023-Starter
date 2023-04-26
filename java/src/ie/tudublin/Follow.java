@@ -27,15 +27,20 @@ public class Follow
     {
         this.word = the_word;
     }
+
     public void set_count(int the_count)
     {
         this.count = the_count;
     }
 
+    public void increase_count()
+    {
+        this.count += 1;
+    }
+    
+
     public String toString()
     {
         return this.word + "(" + this.count + ")";
     }
-
-
 }
