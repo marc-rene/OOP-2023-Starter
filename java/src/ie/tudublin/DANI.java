@@ -38,10 +38,13 @@ public class DANI extends PApplet {
 					this_follow = this_word.find_follow(WORD);
 					if (this_follow == null) 
 					{
-						this_word.add_follow(new Follow(WORD, 1));
+						println("adding follow");
+						Follow temp_follow = new Follow(WORD, 1);
+						this_word.add_follow(temp_follow);
 					} 
 					else 
 					{
+						println("increasing follow count");
 						this_follow.increase_count();
 					}
 				}
