@@ -6,6 +6,10 @@ import processing.core.PApplet;
 
 public class DANI extends PApplet {
 
+	public String[] loadFile()
+	{
+		return null; //temporary
+	}
 	
 
 	public void settings() {
